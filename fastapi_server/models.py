@@ -32,7 +32,7 @@ class Item(Base):
     name: Mapped[str] = mapped_column(String(50))
     price: Mapped[float] = mapped_column(Float)
     rating: Mapped[float] = mapped_column(Float)
-    volume: Mapped[int] = mapped_column(Integer)
+    amount: Mapped[int] = mapped_column(Integer)
 
     def to_dict(self):
         return {
@@ -41,7 +41,7 @@ class Item(Base):
             "name": self.name,
             "price": self.price,
             "rating": self.rating,
-            "volume": self.volume,
+            "amount": self.amount,
         }
 
 
