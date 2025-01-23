@@ -1,7 +1,7 @@
 import os
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from sqlalchemy import Integer, String, Float
+from sqlalchemy import Integer, String, Float, Boolean
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -44,6 +44,11 @@ class Item(Base):
             "amount": self.amount,
         }
 
+class Schedule(Base):
+    __tablename__ = "scheduler"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    article: Mapped[bool] = mapped_column(Integer)
 
 
 async def create_tables():

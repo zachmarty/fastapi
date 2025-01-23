@@ -1,5 +1,5 @@
 from fastapi_server.schemas import ItemBase
-from fastapi_server.models import new_session, Item
+from fastapi_server.models import new_session, Item, Schedule
 from sqlalchemy import select
 
 class ItemOrm:
@@ -28,6 +28,35 @@ class ItemOrm:
             await session.flush()
             await session.commit()
             return "ok"
+
+class SchedulerORM:
+
+    @classmethod
+    async def get_schedule(cls, article):
+        async with new_session() as session:
+            query = select(Schedule).where(Schedule.article == article)
+            result = await session.execute(query)
+            schedule = result.scalars().first()
+            return schedule
         
+    @classmethod
+    async def get_all(cls):
+        async with new_session() as session:
+            query = select(Schedule)
+            result = await session.execute(query)
+            return result.scalars().all()
+        
+    @classmethod
+    async def add_schedule(cls, article):
+        schedule = await SchedulerORM.get_schedule(article)
+        async with new_session() as session:
+            if schedule is None:
+                data = {"article" : article}
+                new_schedule = Schedule(**data)
+                session.add(new_schedule)
+                await session.flush()
+                await session.commit()
+                return "added"
+            return None
 
     
