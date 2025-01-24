@@ -13,6 +13,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher()
 dp.include_router(message_router)
 
+
 async def main():
     logging.basicConfig(level=logging.INFO)
     await dp.start_polling(bot)
