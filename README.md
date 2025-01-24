@@ -24,4 +24,4 @@
 
 ## Docker
 
-Для запуска приложения в docker используйте комманду docker-compose build, docker-compose up
+Для запуска приложения в docker используйте комманды docker-compose build, docker-compose up
