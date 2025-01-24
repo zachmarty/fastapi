@@ -47,7 +47,6 @@ async def periodical_get_and_save_product(article : int):
     if len(r["data"]["products"]) == 0:
         return {"data": "not found"}
     ans = await SchedulerORM.add_schedule(article)
-    print('got', ans)
     if ans == "added":
         from server import scheduler
         scheduler.add_job(get_and_save_product, "interval", minutes = 30, args = [article])
