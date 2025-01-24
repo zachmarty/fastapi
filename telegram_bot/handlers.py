@@ -37,7 +37,7 @@ async def get_item_by_article(message: Message, state: FSMContext):
         await message.answer("Товар не найден")
         return
     await message.answer(
-        f"Товар найден\nнаименование: {item.name}\nартикул: {item.article}\nцена: {item.price}\nколичество: {item.amount}"
+        f"Товар найден\nнаименование: {item.name}\nартикул: {item.article}\nцена: {item.price}\nколичество: {item.amount}\nрейтинг: {item.rating}"
     )
     await state.clear()
 
